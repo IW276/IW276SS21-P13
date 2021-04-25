@@ -9,7 +9,6 @@ COPY jetson-ota-public.asc /etc/apt/trusted.gpg.d/jetson-ota-public.asc
 #Install all dependencies of the project
 RUN apt-get update && \
         apt-get install -y \
-        python3-pip\
+        python3-pip
 
 RUN git clone https://github.com/IW276/IW276SS21-P13.git
-

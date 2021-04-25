@@ -8,5 +8,3 @@
 CONTAINER="p13-demo:1.0.0"
 
 docker run --runtime nvidia -v $1:/videos $CONTAINER /bin/bash -c "cd IW276SS21-P13/src && python3 demo.py $2"
-
-echo "Resulting video can be found in $1"
