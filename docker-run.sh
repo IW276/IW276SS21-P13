@@ -7,4 +7,5 @@
 
 CONTAINER="p13-demo:1.0.0"
 
-docker run --runtime nvidia -v $1:/videos $CONTAINER /bin/bash -c "cd IW276SS21-P13/src && python3 demo.py $2"
+docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
+        $CONTAINER /bin/bash -c "cd IW276SS21-P13/src && python3 demo.py"

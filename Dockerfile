@@ -9,6 +9,14 @@ COPY jetson-ota-public.asc /etc/apt/trusted.gpg.d/jetson-ota-public.asc
 #Install all dependencies of the project
 RUN apt-get update && \
         apt-get install -y \
-        python3-pip
+        python3-pip \
+        build-essential \
+        cmake
+
+RUN pip3 install scikit-build
+RUN pip3 install opencv-python
 
 RUN git clone https://github.com/IW276/IW276SS21-P13.git
+RUN cd IW276SS21-P13 && \
+        git checkout --track origin/lukas-docker-setup &&\
+        chmod +x src/demo.py \
