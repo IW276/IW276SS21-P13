@@ -1,6 +1,6 @@
-version: "1.0"
-services: 
-    asl-p6:
+version: "3.3"
+services:
+    asl-p13:
         image: asl-p13
         container_name: asl-p13
         privileged: true
@@ -10,7 +10,7 @@ services:
         volumes:
             - "/home/p13/.Xauthority:/root/.Xauthority"
             - "/tmp/.X11-unix:/tmp/.X11-unix"
-            - "./logs:/app/IW276SS21-P6/logs"
+            - "./logs:/app/IW276SS21-P13/logs"
               #   - "./resources:/app/IW276SS21/resources"
 #        devices:
 #            - "/dev/video0:/dev/video0"
