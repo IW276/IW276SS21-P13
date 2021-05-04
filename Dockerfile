@@ -13,3 +13,4 @@ RUN pip3 install -U \
     rm -rf ~/.cache/pip
 
 # ....
+Test
