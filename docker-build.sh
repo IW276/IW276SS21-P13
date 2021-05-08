@@ -5,7 +5,7 @@
 cp /etc/apt/sources.list.d/nvidia-l4t-apt-source.list .
 cp /etc/apt/trusted.gpg.d/jetson-ota-public.asc .
 
-sudo docker image build -f Dockerfile -t asl-p13 .
+sudo docker image build -f Dockerfile -t asl-p13
 
 # clean up after ourselves
 rm nvidia-l4t-apt-source.list
