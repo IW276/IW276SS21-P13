@@ -7,8 +7,6 @@ docker run -it -d \
            --env="DISPLAY" \
            --env="QT_X11_NO_MITSHM=1" \
            --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-           --device="/dev/video0:/dev/video0" \
-           --volume="/path/to/your/sharedDockerFiles:/root/sharedDockerFiles" \
            --volume="/etc/machine-id:/etc/machine-id" \
            $CONTAINER /bin/bash -c "cd IW276SS21-P13/src && python3 datareadandshow.py"
 export containerId=$(docker ps -l -q)
