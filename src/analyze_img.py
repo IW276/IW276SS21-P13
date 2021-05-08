@@ -136,6 +136,7 @@ def evaluate():
     c.get_thresholds()
     c.print_values()
     c.show()
+    return c.imgSetup
 
 
 if __name__ == "__main__":
