@@ -5,6 +5,7 @@ RUN nvcc --version
 COPY requirements.txt requirements.txt
 COPY nvidia-l4t-apt-source.list /etc/apt/sources.list.d/nvidia-l4t-apt-source.list
 COPY jetson-ota-public.asc /etc/apt/trusted.gpg.d/jetson-ota-public.asc
+COPY .Xauthority ~/.Xauthority
 
 #Install all dependencies of the project
 RUN apt-get update && \
