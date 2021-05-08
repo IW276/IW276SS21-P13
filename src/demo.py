@@ -1,13 +1,14 @@
-import urllib.request
 import cv2
-import os
+import gamma_correction
+import numpy as np
 
-urllib.request.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=27", "test.jpg")
-img = cv2.imread('test.jpg', 0)
-cv2.imshow('image', img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-try:
-    os.remove("test.jpg")
-except FileNotFoundError:
-    print("Test.jpg does not exist")
+imageNames = ['210425-141321-ka-markplatz-nord.jpg', '210425-153000-markt-dunkel.jpeg']
+resultImage = None
+axis = 0
+for i, name in enumerate(imageNames):
+    img = cv2.imread('../datasets/' + name, 0)
+    img_gamma_corrected = gamma_correction.adjust_gamma(img)
+    resultImage = np.concatenate((img, img_gamma_corrected), axis=1)
+    cv2.imshow('name', resultImage)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
