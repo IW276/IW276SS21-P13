@@ -1,19 +1,19 @@
 version: "3.3"
 services:
-    asl-p13:
-        image: asl-p13
-        container_name: asl-p13
-        privileged: true
-        network_mode: "host"
-        environment:
-            - DISPLAY=$DISPLAY
-        volumes:
-            - "/home/p13/.Xauthority:/root/.Xauthority"
-            - "/tmp/.X11-unix:/tmp/.X11-unix"
-            - "./logs:/app/IW276SS21-P13/logs"
-              #   - "./resources:/app/IW276SS21/resources"
-#        devices:
-#            - "/dev/video0:/dev/video0"
-#            - "/dev/video1:/dev/video1"
-#            - "/dev/video2:/dev/video2"
-        stdin_open: true
+  asl-p13:
+    image: asl-p13
+    container_name: asl-p13
+    privileged: true
+    network_mode: "host"
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - "/home/p13/.Xauthority:/root/.Xauthority"
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+      - "./logs:/app/IW276SS21-P13/logs"
+      #   - "./resources:/app/IW276SS21/resources"
+    #        devices:
+    #            - "/dev/video0:/dev/video0"
+    #            - "/dev/video1:/dev/video1"
+    #            - "/dev/video2:/dev/video2"
+    stdin_open: true
