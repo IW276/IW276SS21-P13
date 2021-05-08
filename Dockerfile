@@ -18,5 +18,5 @@ RUN pip3 install scikit-build
 
 RUN git clone https://github.com/IW276/IW276SS21-P13.git
 RUN cd IW276SS21-P13 && \
-        git checkout origin/lukas-docker-setup && \
-        git checkout -b lukas-docker-setup \
+        git checkout --track origin/lukas-docker-setup &&\
+        chmod +x src/datareadandshow.py \
