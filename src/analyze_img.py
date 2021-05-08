@@ -37,7 +37,7 @@ class ImageSetup:
 
 def average(img2d):
     rows, cols = img2d.shape
-    m = np.sum(img2d[0:rows - 1, 0:cols - 1]) / (rows*cols)
+    m = np.mean(img2d[0:rows, 0:cols])
     return m
 
 
