@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export DISPLAY=:1
+
 CONTAINER="asl-p13"
 
 docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
