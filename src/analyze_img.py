@@ -5,11 +5,10 @@ import numpy as np
 import os
 import cv2
 
-
 # read in from webcam
-os.remove('test.jpg')
-req.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=27", "test.jpg")
-img = cv2.imread('test.jpg', cv2.IMREAD_COLOR)  # BGR
+# os.remove('test.jpg')
+# req.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=27", "test.jpg")
+# img = cv2.imread('test.jpg', cv2.IMREAD_COLOR)  # BGR
 
 brightness = {"DARK": 0,
               "NORMAL": 1,
@@ -126,18 +125,20 @@ class Configuration:
         cv2.destroyAllWindows()
 
 
-def evaluate():
+def evaluate(img):
     c = Configuration(img)
     c.get_brightness()
     c.get_contrast()
-    histogram(c.imgGray, "gray", True)
-    histogram(c.imgHSV[:, :, 1], "saturation", True)
+    histogram(c.imgGray, "gray")
+    histogram(c.imgHSV[:, :, 1], "saturation")
     c.get_saturation()
     c.get_thresholds()
-    c.print_values()
-    c.show()
+    # TODO: Remove or comment print calls after testing
+    # c.print_values()
+    # TODO: Remove or comment after testing
+    # c.show()
     return c.imgSetup
 
 
-if __name__ == "__main__":
-    evaluate()
+# if __name__ == "__main__":
+#     evaluate()

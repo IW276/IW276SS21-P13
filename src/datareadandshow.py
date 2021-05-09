@@ -1,4 +1,5 @@
 import cv2
+from src.pipeline import Pipeline
 
 
 
@@ -7,7 +8,9 @@ import cv2
 
 
 def open_pics():
+    image_names_file = "../datasets/RTTS light/ImageSets/test.txt"
     datei = open('../datasets/RTTS light/ImageSets/test.txt', 'r')
+    pipeline = Pipeline(image_names_file)
     print("Datei opened")
     for zeile in datei:
         picture_name = "../datasets/RTTS light/JPEGImages/" + zeile[:-1] + ".png"
