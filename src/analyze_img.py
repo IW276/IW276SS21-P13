@@ -129,11 +129,14 @@ def evaluate(img):
     c = Configuration(img)
     c.get_brightness()
     c.get_contrast()
-    histogram(c.imgGray, "gray", True)
-    histogram(c.imgHSV[:, :, 1], "saturation", True)
+    # TODO: Remove or comment histogramm calls after testing
+    # histogram(c.imgGray, "gray", True)
+    # histogram(c.imgHSV[:, :, 1], "saturation", True)
     c.get_saturation()
     c.get_thresholds()
-    c.print_values()
+    # TODO: Remove or comment print calls after testing
+    # c.print_values()
+    # TODO: Remove or comment after testing
     # c.show()
     return c.imgSetup
 

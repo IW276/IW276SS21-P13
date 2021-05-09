@@ -26,12 +26,14 @@ print("Datei opened")
 for zeile in datei:
     picture_name = "../datasets/RTTS light/JPEGImages/" + zeile[:-1] + ".png"
     picture_name_result = "../datasets/pipeline-results/" + zeile[:-1] + ".png"
-    print(picture_name)
+    # TODO: Remove or comment print calls after testing
+    # print(picture_name)
     img = cv2.imread(picture_name)
     img_result = cv2.imread(picture_name_result)
     resultImage = np.concatenate((img, img_result), axis=1)
     height, width = img.shape[:2]
-    print("width: ", width, "height: ", height)
+    # TODO: Remove or comment print calls after testing
+    # print("width: ", width, "height: ", height)
     cv2.imshow('image', resultImage)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
