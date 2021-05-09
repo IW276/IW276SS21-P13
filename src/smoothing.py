@@ -6,12 +6,12 @@ import os
 import cv2
 
 
-os.remove('test.jpg')
-req.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=27", "test.jpg")
-img = cv2.imread('test.jpg', cv2.IMREAD_COLOR)  # BGR
-
-filter = {"MEAN": 0,
-          "GAUSSIAN": 1}
+# os.remove('test.jpg')
+# req.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=27", "test.jpg")
+# img = cv2.imread('test.jpg', cv2.IMREAD_COLOR)  # BGR
+#
+# filter = {"MEAN": 0,
+#           "GAUSSIAN": 1}
 
 
 class Filter:
@@ -23,37 +23,36 @@ class Filter:
 
     def average_filter(self):
         blur = cv2.blur(self.imgGray, (5, 5))
-        return blur
+        return cv2.cvtColor(blur, cv2.COLOR_GRAY2BGR)
 
     def gaussian_filter(self):
         blur = cv2.GaussianBlur(self.imgGray, (5, 5), 0)
-        return blur
+        return cv2.cvtColor(blur, cv2.COLOR_GRAY2BGR)
 
     def median_filter(self):
         blur = cv2.medianBlur(self.imgGray, 5)
-        return blur
+        return cv2.cvtColor(blur, cv2.COLOR_GRAY2BGR)
 
     def bilateral_filter(self):
         bil = cv2.bilateralFilter(self.imgGray, 10, 40, 40)
-        return bil
+        return cv2.cvtColor(bil, cv2.COLOR_GRAY2BGR)
 
     def filter(self):
         kernel = np.array(([1, 4, 1], [4, 16, 4], [1, 4, 1]), np.float32) / 36
         dst = cv2.filter2D(self.imgGray, -1, kernel)
-        return dst
+        return cv2.cvtColor(dst, cv2.COLOR_GRAY2BGR)
+
+# def main():
+#     setup = ana.evaluate()
+# f = Filter(img)
+# dst = f.gaussian_filter()
+# cv2.imshow("org", f.imgGray)
+# cv2.waitKey(0)
+# cv2.imshow("dst", dst)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
+# return 0
 
 
-def main():
-    # setup = ana.evaluate()
-    f = Filter(img)
-    dst = f.gaussian_filter()
-    cv2.imshow("org", f.imgGray)
-    cv2.waitKey(0)
-    cv2.imshow("dst", dst)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    return 0
-
-
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

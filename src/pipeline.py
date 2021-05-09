@@ -5,6 +5,7 @@ import cv2
 
 from src.analyze_img import evaluate
 from src.gamma_correction import adjust_gamma
+from src.smoothing import Filter
 
 
 def read_image(zeile):
@@ -33,7 +34,13 @@ class Pipeline:
             self.img_count += 1
             img = read_image(zeile)
             image_setup = evaluate(img)
-            result_img = adjust_gamma(img, image_setup.brightness)
+            result_img = Filter(img).average_filter()
+            result_img = Filter(result_img).filter()
+            result_img = Filter(result_img).median_filter()
+            result_img = Filter(result_img).gaussian_filter()
+            result_img = Filter(result_img).bilateral_filter()
+            result_img = adjust_gamma(result_img, image_setup.brightness)
+
             write_result_image(self, zeile, result_img)
 
         self.end_time = datetime.now().timestamp()
