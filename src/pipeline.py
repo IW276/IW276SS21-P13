@@ -3,10 +3,10 @@ from datetime import datetime
 
 import cv2
 
-from src.analyze_img import evaluate
-from src.binarization import bina_adapt_mean_threshold
-from src.gamma_correction import adjust_gamma
-from src.smoothing import Filter
+from analyze_img import evaluate
+from binarization import bina_adapt_mean_threshold
+from gamma_correction import adjust_gamma
+from smoothing import Filter
 
 
 def read_image(zeile):
