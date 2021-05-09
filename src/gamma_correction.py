@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 
 
-def adjust_gamma(image, brightness=1):
+def adjust_gamma(image, brightness=127):
     if not 127 - 2 <= brightness <= 127 + 2:
         gamma = 2 - (brightness / 255)
         inv_gamma = 1.0 / gamma

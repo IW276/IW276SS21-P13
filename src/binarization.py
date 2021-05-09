@@ -10,7 +10,7 @@ def bina_fixed_threshold(image, threshold):
 # adaptive calculation; threshold value is the mean of neighbourhood area
 # blocksize: decides the size of the neighbourhood area
 def bina_adapt_mean_threshold(image):
-    blocksize = 11
+    blocksize = 5
     thresh2 = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blocksize, 2)
     return thresh2
 

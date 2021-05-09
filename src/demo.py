@@ -28,8 +28,15 @@ for zeile in datei:
     picture_name_result = "../datasets/pipeline-results/" + zeile[:-1] + ".png"
     # TODO: Remove or comment print calls after testing
     # print(picture_name)
+
+    width = 600
+    height = 400
+    dim = (width, height)
+
     img = cv2.imread(picture_name)
+    img = cv2.resize(img, dim)
     img_result = cv2.imread(picture_name_result)
+    img_result = cv2.resize(img_result, dim)
     resultImage = np.concatenate((img, img_result), axis=1)
     height, width = img.shape[:2]
     # TODO: Remove or comment print calls after testing
