@@ -36,7 +36,7 @@ for zeile in datei:
     img = cv2.imread(picture_name)
     img = cv2.resize(img, dim)
     img_result = cv2.imread(picture_name_result)
-    img_result = cv2.resize(img_result, dim)
+    # img_result = cv2.resize(img_result, dim)
     resultImage = np.concatenate((img, img_result), axis=1)
     height, width = img.shape[:2]
     # TODO: Remove or comment print calls after testing
