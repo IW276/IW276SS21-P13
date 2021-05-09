@@ -19,4 +19,4 @@ RUN pip3 install scikit-build
 RUN git clone https://github.com/IW276/IW276SS21-P13.git && \
     cd IW276SS21-P13 && \
 #    git checkout --track origin/master &&\
-    chmod +x src/datareadandshow.py \
+    chmod +x src/demo.py \
