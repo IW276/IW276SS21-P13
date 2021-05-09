@@ -12,7 +12,7 @@ import numpy as np
 #     cv2.imshow('name', resultImage)
 #     cv2.waitKey(0)
 #     cv2.destroyAllWindows()
-from src.pipeline import Pipeline
+from pipeline import Pipeline
 
 image_names_file = "../datasets/RTTS light/ImageSets/test.txt"
 image_results_directory = "../datasets/pipeline-results"
