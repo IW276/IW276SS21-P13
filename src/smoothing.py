@@ -1,17 +1,5 @@
-import matplotlib.pyplot as plt
-import analyze_img as ana
-import urllib.request as req
-import numpy as np
-import os
 import cv2
-
-
-# os.remove('test.jpg')
-# req.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=27", "test.jpg")
-# img = cv2.imread('test.jpg', cv2.IMREAD_COLOR)  # BGR
-#
-# filter = {"MEAN": 0,
-#           "GAUSSIAN": 1}
+import numpy as np
 
 
 class Filter:
@@ -41,18 +29,3 @@ class Filter:
         kernel = np.array(([1, 4, 1], [4, 16, 4], [1, 4, 1]), np.float32) / 36
         dst = cv2.filter2D(self.imgGray, -1, kernel)
         return cv2.cvtColor(dst, cv2.COLOR_GRAY2BGR)
-
-# def main():
-#     setup = ana.evaluate()
-# f = Filter(img)
-# dst = f.gaussian_filter()
-# cv2.imshow("org", f.imgGray)
-# cv2.waitKey(0)
-# cv2.imshow("dst", dst)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
-# return 0
-
-
-# if __name__ == '__main__':
-#     main()

@@ -2,7 +2,6 @@ import cv2
 from pipeline import Pipeline
 
 
-
 # Funktion öffnet eine Textdatei, welche dateinamen von Bildern enthält. Diese
 # Bilder werden mittels cv geöffnet und angezeigt
 
@@ -25,5 +24,4 @@ def open_pics():
     datei.close()
     print("datei closed!")
 
-
-#open_pics()
+# open_pics()

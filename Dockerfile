@@ -14,7 +14,8 @@ RUN apt-get update && \
         build-essential \
         cmake
 
-RUN pip3 install scikit-build
+RUN pip3 install scikit-build && \
+    pip3 install matplotlib
 
 RUN git clone https://github.com/IW276/IW276SS21-P13.git && \
     cd IW276SS21-P13 && \

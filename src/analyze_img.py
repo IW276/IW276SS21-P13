@@ -1,14 +1,7 @@
 from __future__ import print_function
 from matplotlib import pyplot as plt
-import urllib.request as req
 import numpy as np
-import os
 import cv2
-
-# read in from webcam
-# os.remove('test.jpg')
-# req.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=27", "test.jpg")
-# img = cv2.imread('test.jpg', cv2.IMREAD_COLOR)  # BGR
 
 brightness = {"DARK": 0,
               "NORMAL": 1,
