@@ -8,12 +8,13 @@ from pipeline import Pipeline
 
 parser = argparse.ArgumentParser(description='Automatic white balancing and exposure compensation.')
 parser.add_argument('--datasets_path', type=str)
+parser.add_argument('----pipeline_results', type=str)
 args = parser.parse_args()
 
 datasets_path = args.datasets_path
+image_results_directory = args.datasets_path
 
 image_names_file = os.path.join(datasets_path, "RTTS_light", "ImageSets", "test.txt")
-image_results_directory = os.path.join(datasets_path, "pipeline-results")
 
 pipeline = Pipeline(datasets_path, image_names_file, image_results_directory)
 pipeline.run()
