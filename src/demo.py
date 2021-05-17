@@ -12,7 +12,7 @@ args = parser.parse_args()
 
 datasets_path = args.datasets_path
 
-image_names_file = os.path.join(datasets_path, "RTTS_light", "ImageSets", "test.txt")
+image_names_file = os.path.join(datasets_path, "RTTS_light", "ImageSets", "Main", "test.txt")
 image_results_directory = os.path.join(datasets_path, "pipeline-results")
 
 pipeline = Pipeline(datasets_path, image_names_file, image_results_directory)
