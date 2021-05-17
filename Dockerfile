@@ -19,5 +19,5 @@ RUN pip3 install scikit-build && \
 
 RUN git clone https://github.com/IW276/IW276SS21-P13.git && \
     cd IW276SS21-P13 && \
-#    git checkout --track origin/master &&\
+    git checkout --track origin/lukas-docker-deployment &&\
     chmod +x src/demo.py \
