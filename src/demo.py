@@ -7,7 +7,7 @@ import numpy as np
 from pipeline import Pipeline
 
 parser = argparse.ArgumentParser(description='Automatic white balancing and exposure compensation.')
-parser.add_argument('--datasets-path', type=str)
+parser.add_argument('--datasets_path', type=str)
 args = parser.parse_args()
 
 datasets_path = args.datasets_path
