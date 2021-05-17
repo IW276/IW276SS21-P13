@@ -1,10 +1,16 @@
+import argparse
+
 import cv2
 import numpy as np
 
 from pipeline import Pipeline
 
-image_names_file = "../datasets/RTTS light/ImageSets/test.txt"
-image_results_directory = "../datasets/pipeline-results"
+parser = argparse.ArgumentParser(description='Automatic white and confession balancing')
+parser.add_argument('--datasets_path', type=str)
+args = parser.parse_args()
+
+image_names_file = args.datasets_path + "RTTS light/ImageSets/test.txt"
+image_results_directory = args.datasets_path + "pipeline-results"
 
 pipeline = Pipeline(image_names_file, image_results_directory)
 pipeline.run()
