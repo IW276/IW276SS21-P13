@@ -33,6 +33,8 @@ class Pipeline:
         self.start_time = datetime.now().timestamp()
         print("Current Time =", self.start_time)
         for zeile in self.image_names_file:
+            if zeile[:-1] == "":
+                break
             self.img_count += 1
             img = self.read_image(zeile)
             image_setup = evaluate(img)
