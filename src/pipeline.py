@@ -2,7 +2,6 @@ from __future__ import print_function
 
 import os
 from datetime import datetime
-from pathlib import Path
 
 import cv2
 
@@ -27,8 +26,6 @@ class Pipeline:
         return cv2.imread(str(picture_name))
 
     def write_result_image(self, zeile, result_img):
-        if not Path(self.pipeline_result_directory).exists():
-            os.mkdir(self.pipeline_result_directory)
         picture_name = os.path.join(self.pipeline_result_directory, zeile[:-1] + ".png")
         cv2.imwrite(picture_name, result_img)
 
