@@ -12,7 +12,7 @@ parser.add_argument('--pipeline_results', type=str)
 args = parser.parse_args()
 
 datasets_path = args.datasets_path
-image_results_directory = args.datasets_path
+image_results_directory = args.pipeline_results
 
 image_names_file = os.path.join(datasets_path, "RTTS_light", "ImageSets", "test.txt")
 
@@ -24,7 +24,7 @@ print("Datei opened")
 
 for zeile in datei:
     picture_name = os.path.join(datasets_path, "RTTS_light", "JPEGImages", zeile[:-1] + ".png")
-    picture_name_result = os.path.join(datasets_path, "pipeline-results", zeile[:-1] + ".png")
+    picture_name_result = os.path.join(image_results_directory, zeile[:-1] + ".png")
 
     dim = (600, 400)
 
