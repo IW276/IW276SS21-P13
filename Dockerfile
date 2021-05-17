@@ -17,6 +17,8 @@ RUN apt-get update && \
 RUN pip3 install scikit-build && \
     pip3 install matplotlib
 
+RUN mkdir /datasets/pipeline-results
+
 RUN git clone https://github.com/IW276/IW276SS21-P13.git && \
     cd IW276SS21-P13 && \
     git checkout --track origin/lukas-docker-deployment &&\
