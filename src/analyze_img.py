@@ -1,5 +1,7 @@
 from __future__ import print_function
 from matplotlib import pyplot as plt
+from skimage.filters import threshold_multiotsu
+from skimage.restoration import estimate_sigma
 import urllib.request as req
 import numpy as np
 import os
@@ -8,8 +10,9 @@ import cv2
 
 # read in from webcam
 os.remove('test.jpg')
-req.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=27", "test.jpg")
-img = cv2.imread('test.jpg', cv2.IMREAD_COLOR)  # BGR
+req.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=22", "test.jpg")
+img = cv2.imread("test.jpg", cv2.IMREAD_COLOR)  # BGR
+# img = cv2.imread('../datasets/RTTS light/JPEGImages/BD_Baidu_216.png', cv2.IMREAD_COLOR)  # BGR
 
 brightness = {"DARK": 0,
               "NORMAL": 1,
@@ -18,6 +21,9 @@ brightness = {"DARK": 0,
 contrast = {"HIGH": 2,
             "NORMAL": 1,
             "LOW": 0}
+
+noise = {"NOISY": 1,
+         "DEFAULT": 0}
 
 
 class ImageSetup:
@@ -33,6 +39,9 @@ class ImageSetup:
         self.sat_average = -1
         self.sat_std_deviation = -1
         self.sat_threshold = -1
+        # noise
+        self.noise = noise["DEFAULT"]
+        self.val_noise = -1
 
 
 def average(img2d):
@@ -63,6 +72,18 @@ def threshold(img2d):
     # return is the threshold value followed by the result image
     thr, o1 = cv2.threshold(img2d, 0, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C + cv2.THRESH_OTSU)
     return thr
+
+
+def multi_thresholding(img2d):
+    thresholds = threshold_multiotsu(img2d)
+    # thresholds is an array with two elements
+    return thresholds
+
+
+def estimate_noise(img2d):
+    sigma = estimate_sigma(img2d)
+    # sigma is a value that describes the noise
+    return sigma
 
 
 class Configuration:
@@ -105,6 +126,15 @@ class Configuration:
         sat_thresh = threshold(self.imgHSV[:, :, 1])
         self.imgSetup.threshold = gray_thresh
         self.imgSetup.sat_threshold = sat_thresh
+        th = multi_thresholding(self.imgGray)
+        print("thresholds multi otsu: ", th)
+
+    def get_noise(self):
+        n = estimate_noise(self.imgGray)
+        # n > 10 noisy image otherwise not
+        if n < 10.0:
+            self.imgSetup.noise = noise["NOISY"]
+        self.imgSetup.val_noise = n
 
     def print_values(self):
         print("Average brightness: " + str(self.imgSetup.average))
@@ -115,6 +145,8 @@ class Configuration:
         print("Threshold sat: " + str(self.imgSetup.sat_threshold))
         print("Brightness: " + str(self.imgSetup.brightness))
         print("Contrast: " + str(self.imgSetup.contrast))
+        print("Noise value: " + str(self.imgSetup.val_noise))
+        print("Noise: " + str(self.imgSetup.noise))
 
     def show(self):
         cv2.imshow("Color", self.img)
@@ -126,18 +158,19 @@ class Configuration:
         cv2.destroyAllWindows()
 
 
-def evaluate():
-    c = Configuration(img)
+def evaluate(img_col):
+    c = Configuration(img_col)
     c.get_brightness()
     c.get_contrast()
     histogram(c.imgGray, "gray", True)
     histogram(c.imgHSV[:, :, 1], "saturation", True)
     c.get_saturation()
     c.get_thresholds()
+    c.get_noise()
     c.print_values()
     c.show()
     return c.imgSetup
 
 
 if __name__ == "__main__":
-    evaluate()
+    evaluate(img)

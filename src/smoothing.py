@@ -7,11 +7,12 @@ import cv2
 
 
 os.remove('test.jpg')
-req.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=27", "test.jpg")
-img = cv2.imread('test.jpg', cv2.IMREAD_COLOR)  # BGR
+req.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=19", "test.jpg")
+img = cv2.imread("test.jpg", cv2.IMREAD_COLOR)  # BGR
+# img = cv2.imread('../datasets/RTTS light/JPEGImages/AM_Bing_274.png', cv2.IMREAD_COLOR)
 
-filter = {"MEAN": 0,
-          "GAUSSIAN": 1}
+filters = {"MEAN": 0,
+           "GAUSSIAN": 1}
 
 
 class Filter:
@@ -43,17 +44,17 @@ class Filter:
         return dst
 
 
-def main():
-    # setup = ana.evaluate()
-    f = Filter(img)
+def smooth(img_col):
+    setup = ana.evaluate(img_col)
+    f = Filter(img_col)
     dst = f.gaussian_filter()
     cv2.imshow("org", f.imgGray)
     cv2.waitKey(0)
     cv2.imshow("dst", dst)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-    return 0
+    return dst
 
 
 if __name__ == '__main__':
-    main()
+    smooth(img)
