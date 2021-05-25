@@ -7,12 +7,12 @@ from pipeline import Pipeline
 
 
 def open_pics():
-    image_names_file = "../datasets/RTTS light/ImageSets/test.txt"
-    datei = open('../datasets/RTTS light/ImageSets/test.txt', 'r')
+    image_names_file = "../datasets/RTTS_light/ImageSets/test.txt"
+    datei = open('../datasets/RTTS_light/ImageSets/test.txt', 'r')
     pipeline = Pipeline(image_names_file)
     print("Datei opened")
     for zeile in datei:
-        picture_name = "../datasets/RTTS light/JPEGImages/" + zeile[:-1] + ".png"
+        picture_name = "../datasets/RTTS_light/JPEGImages/" + zeile[:-1] + ".png"
         print(picture_name)
         img = cv2.imread(picture_name)
 
