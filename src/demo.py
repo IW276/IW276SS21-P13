@@ -27,7 +27,7 @@ def show_results():
     for image_name in image_names:
         picture_name = os.path.join(datasets_path, "RTTS_light", "JPEGImages", image_name[:-1] + ".png")
         picture_name_result = os.path.join(result_directory, image_name[:-1] + ".png")
-        dim = (400, 200)
+        dim = (500, 350)
         img = cv2.imread(picture_name)
         img = cv2.resize(img, dim)
         img_result = cv2.imread(picture_name_result)
