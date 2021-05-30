@@ -68,7 +68,7 @@ IW276SS21-P13)
 $ docker-build.sh
 ```
 
-## Running
+### Running
 
 By running the docker image, your inserted images will be processed in the pipeline. You have to execute following
 command:
@@ -82,13 +82,17 @@ from the pipeline and **/full-result-directory-path/** is the full path to the d
 dropped. Both directories must exist!
 
 Example:
+
 ```
 $ sudo bash docker-run.sh /home/p13/IW276SS21-P13/datasets/demo/originals/ /home/p13/IW276SS21-P13/datasets/demo/results
 ```
 
+After the pipeline processed the images, they will be displayed. You can press any key to display the next images.
+
 ## Acknowledgments
 
 This repo is based on
+
 - [Group P6](https://github.com/IW276/IW276WS20-P6)
 - [Group P12](https://github.com/IW276/IW276WS20-P12)
 - [Docker Image for Nano](https://github.com/IntelRealSense/librealsense/issues/5275#issuecomment-555830996)
