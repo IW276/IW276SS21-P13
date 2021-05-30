@@ -2,9 +2,8 @@
 
 Short introduction to project assigment.
 
-<p align="center">
-  Screenshot / GIF <br />
-  Link to Demo Video
+<p style="margin-left: 50%;">
+  <img src="./gif/result.gif"  alt="Project samples"/>
 </p>
 
 > This work was done by Johannes Brecht, Sophia Zimmer, Lukas Seitz during the IW276 Autonome Systeme Labor at the Karlsruhe University of Applied Sciences (Hochschule Karlruhe - Technik und Wirtschaft) in SS 2021.
@@ -13,44 +12,90 @@ Short introduction to project assigment.
 
 * [Requirements](#requirements)
 * [Prerequisites](#prerequisites)
-* [Pre-trained model](#pre-trained-model)
 * [Running](#running)
 * [Acknowledgments](#acknowledgments)
 
 ## Requirements
 
-* Python 3.9.2 (or above)
-* OpenCV 4.5.1 (or above)
 * Jetson Nano
 * Jetpack 4.5.1
+* Docker 19.03 (or above)
+* Python 3.9.2 (or above)
+* OpenCV 4.5.1.48
+* Matplotlib
 
 ## Prerequisites
 
-The demo aka video stream pipeline as well as the training pipeline have both been containerized with docker to provide
-a clean runtime environment.
+The demo aka image stream pipeline has been containerized with docker to provide a clean runtime environment.
+
+1. Clone the repository
+
+```
+// https
+git clone https://github.com/IW276/IW276SS21-P13.git
+
+// ssh
+git clone git@github.com:IW276/IW276SS21-P13.git
+```
+
+2. Move inside the directory
+
+```
+cd IW276SS21-P13
+```
+
+3. Enable the jetson_clocks (to increase install/execution performance)
+
+```
+sudo jetson_clocks
+```
+
+### Displaying the pipeline results
+
+For displaying the pipeline results you have to connect via a vnc client or use the jetson nano with an attached
+hardware display.
+
+## Docker
+
+Both, the building and execution is done by using docker.
 
 ### Build
+
+For building the docker image you only have to execute following code in a command-line (you have to be in directory
+IW276SS21-P13)
 
 ```
 $ docker-build.sh
 ```
 
-## Running
+### Running
+
+By running the docker image, your inserted images will be processed in the pipeline. You have to execute following
+command:
 
 ```
-$ docker-run.sh
+$ docker-run.sh /full-image-directory-path/ /full-result-directory-path/
 ```
 
-## Docker
+Mind that **/full-image-directory-path/** is the full path to the directory with the images that should be processed
+from the pipeline and **/full-result-directory-path/** is the full path to the directory where the results should be
+dropped. Both directories must exist!
 
-HOW TO
+Example:
+
+```
+$ sudo bash docker-run.sh /home/p13/IW276SS21-P13/datasets/demo/originals/ /home/p13/IW276SS21-P13/datasets/demo/results
+```
+
+After the pipeline processed the images, they will be displayed. You can press any key to display the next images.
 
 ## Acknowledgments
 
 This repo is based on
 
-- [Source 1](https://github.com/)
-- [Source 2](https://github.com/)
+- [Group P6](https://github.com/IW276/IW276WS20-P6)
+- [Group P12](https://github.com/IW276/IW276WS20-P12)
+- [Docker Image for Nano](https://github.com/IntelRealSense/librealsense/issues/5275#issuecomment-555830996)
 
 Thanks to the original authors for their work!
 

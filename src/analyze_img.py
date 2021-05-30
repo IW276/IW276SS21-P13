@@ -1,18 +1,8 @@
 from __future__ import print_function
-from matplotlib import pyplot as plt
-from skimage.filters import threshold_multiotsu
-from skimage.restoration import estimate_sigma
-import urllib.request as req
-import numpy as np
-import os
+
 import cv2
-
-
-# read in from webcam
-os.remove('test.jpg')
-req.urlretrieve("https://service.ka-news.de/tools/webcams/?cam=22", "test.jpg")
-img = cv2.imread("test.jpg", cv2.IMREAD_COLOR)  # BGR
-# img = cv2.imread('../datasets/RTTS light/JPEGImages/BD_Baidu_216.png', cv2.IMREAD_COLOR)  # BGR
+import numpy as np
+from matplotlib import pyplot as plt
 
 brightness = {"DARK": 0,
               "NORMAL": 1,
@@ -136,17 +126,16 @@ class Configuration:
             self.imgSetup.noise = noise["NOISY"]
         self.imgSetup.val_noise = n
 
-    def print_values(self):
-        print("Average brightness: " + str(self.imgSetup.average))
-        print("Standard deviation: " + str(self.imgSetup.std_deviation))
-        print("Average saturation: " + str(self.imgSetup.sat_average))
-        print("Std. deviation sat: " + str(self.imgSetup.sat_std_deviation))
-        print("Threshold gray: " + str(self.imgSetup.threshold))
-        print("Threshold sat: " + str(self.imgSetup.sat_threshold))
-        print("Brightness: " + str(self.imgSetup.brightness))
-        print("Contrast: " + str(self.imgSetup.contrast))
-        print("Noise value: " + str(self.imgSetup.val_noise))
-        print("Noise: " + str(self.imgSetup.noise))
+    def print_values(self, do_print=True):
+        if do_print:
+            print("Average brightness: " + str(self.imgSetup.average))
+            print("Standard deviation: " + str(self.imgSetup.std_deviation))
+            print("Average saturation: " + str(self.imgSetup.sat_average))
+            print("Std. deviation sat: " + str(self.imgSetup.sat_std_deviation))
+            print("Threshold gray: " + str(self.imgSetup.threshold))
+            print("Threshold sat: " + str(self.imgSetup.sat_threshold))
+            print("Brightness: " + str(self.imgSetup.brightness))
+            print("Contrast: " + str(self.imgSetup.contrast))
 
     def show(self):
         cv2.imshow("Color", self.img)
@@ -158,19 +147,16 @@ class Configuration:
         cv2.destroyAllWindows()
 
 
-def evaluate(img_col):
-    c = Configuration(img_col)
+def evaluate(img):
+    c = Configuration(img)
     c.get_brightness()
     c.get_contrast()
-    histogram(c.imgGray, "gray", True)
-    histogram(c.imgHSV[:, :, 1], "saturation", True)
+    histogram(c.imgGray, "gray")
+    histogram(c.imgHSV[:, :, 1], "saturation")
     c.get_saturation()
     c.get_thresholds()
+    c.print_values(False)
     c.get_noise()
     c.print_values()
     c.show()
     return c.imgSetup
-
-
-if __name__ == "__main__":
-    evaluate(img)
