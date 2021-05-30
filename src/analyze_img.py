@@ -1,8 +1,8 @@
-from __future__ import print_function
-
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
+from skimage.filters import threshold_multiotsu
+from skimage.restoration import estimate_sigma
 
 brightness = {"DARK": 0,
               "NORMAL": 1,
@@ -84,6 +84,7 @@ class Configuration:
         self.rows, self.cols, self.cha = self.img.shape
         self.pixels = self.cols * self.rows
         self.imgSetup = ImageSetup()
+        self.th = None
 
     def get_brightness(self):
         m = average(self.imgGray)
@@ -111,13 +112,14 @@ class Configuration:
             self.imgSetup.contrast = contrast["LOW"]
         self.imgSetup.std_deviation = s
 
-    def get_thresholds(self):
+    def get_thresholds(self, do_print=False):
         gray_thresh = threshold(self.imgGray)
         sat_thresh = threshold(self.imgHSV[:, :, 1])
         self.imgSetup.threshold = gray_thresh
         self.imgSetup.sat_threshold = sat_thresh
-        th = multi_thresholding(self.imgGray)
-        print("thresholds multi otsu: ", th)
+        self.th = multi_thresholding(self.imgGray)
+        if do_print:
+            print("thresholds multi otsu: ", self.th)
 
     def get_noise(self):
         n = estimate_noise(self.imgGray)
@@ -137,14 +139,15 @@ class Configuration:
             print("Brightness: " + str(self.imgSetup.brightness))
             print("Contrast: " + str(self.imgSetup.contrast))
 
-    def show(self):
-        cv2.imshow("Color", self.img)
-        cv2.waitKey(0)
-        cv2.imshow("Gray", self.imgGray)
-        cv2.waitKey(0)
-        cv2.imshow("Saturation", self.imgHSV[:, :, 1])
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+    def show(self, show=True):
+        if show:
+            cv2.imshow("Color", self.img)
+            cv2.waitKey(0)
+            cv2.imshow("Gray", self.imgGray)
+            cv2.waitKey(0)
+            cv2.imshow("Saturation", self.imgHSV[:, :, 1])
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
 
 
 def evaluate(img):
@@ -155,8 +158,7 @@ def evaluate(img):
     histogram(c.imgHSV[:, :, 1], "saturation")
     c.get_saturation()
     c.get_thresholds()
-    c.print_values(False)
     c.get_noise()
-    c.print_values()
-    c.show()
+    c.print_values(False)
+    c.show(False)
     return c.imgSetup
