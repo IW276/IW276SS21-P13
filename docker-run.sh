@@ -4,7 +4,7 @@ CONTAINER="asl-p13"
 
 export DISPLAY=:1
 
-RUN xhost +
+xhost +
 
 docker run -it \
         -e DISPLAY=$DISPLAY \
