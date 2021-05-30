@@ -128,5 +128,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 *.idea
-*pipeline-results
-*RTTS/
+*datasets/pedestrian_dataset
+*datasets/pipeline-results
+*datasets/RTTS
+*datasets/RTTS_light
+*datasets/train
+*datasets/val
+*datasets/pedestrian_dataset.zip
