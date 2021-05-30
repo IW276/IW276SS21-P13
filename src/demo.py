@@ -1,7 +1,9 @@
 import argparse
 import os
+
 import cv2
 import numpy as np
+
 from pipeline import Pipeline
 
 
@@ -33,7 +35,10 @@ def show_results():
         img_result = cv2.imread(picture_name_result)
         img_result = cv2.resize(img_result, dim)
         result_image = np.concatenate((img, img_result), axis=1)
+
         cv2.imshow('image', result_image)
+        result_path = os.path.join("..", "gif", image_name.replace("\n", "") + ".png")
+        cv2.imwrite(result_path, result_image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
