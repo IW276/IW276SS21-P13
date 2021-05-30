@@ -68,6 +68,20 @@ IW276SS21-P13)
 $ docker-build.sh
 ```
 
+### Uploading Image
+
+For uploading the docker image to the GitHub docker registry use following commands:
+
+```
+sudo bash docker-build.sh
+cat ~/TOKEN.txt | docker login https://docker.pkg.github.com -u <GITHUB_USERNAME> --password-stdin
+docker tag <image-id> docker.pkg.github.com/iw276/iw276ss21-p13/asl-p13:<version>
+docker push docker.pkg.github.com/iw276/iw276ss21-p13/asl-p13:<version>
+```
+
+GITHUB_USERNAME is your GitHub username and in the TOKEN.txt should be your personal GitHub access token. Place the
+image id of the built docker image into the placeholder <image-id>. For <version> use 1.0 as final release version.
+
 ### Running
 
 By running the docker image, your inserted images will be processed in the pipeline. You have to execute following
