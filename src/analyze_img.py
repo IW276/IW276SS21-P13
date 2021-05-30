@@ -1,8 +1,6 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-from skimage.filters import threshold_multiotsu
-from skimage.restoration import estimate_sigma
 
 brightness = {"DARK": 0,
               "NORMAL": 1,
@@ -11,9 +9,6 @@ brightness = {"DARK": 0,
 contrast = {"HIGH": 2,
             "NORMAL": 1,
             "LOW": 0}
-
-noise = {"NOISY": 1,
-         "DEFAULT": 0}
 
 
 class ImageSetup:
@@ -29,9 +24,6 @@ class ImageSetup:
         self.sat_average = -1
         self.sat_std_deviation = -1
         self.sat_threshold = -1
-        # noise
-        self.noise = noise["DEFAULT"]
-        self.val_noise = -1
 
 
 def average(img2d):
@@ -64,18 +56,6 @@ def threshold(img2d):
     return thr
 
 
-def multi_thresholding(img2d):
-    thresholds = threshold_multiotsu(img2d)
-    # thresholds is an array with two elements
-    return thresholds
-
-
-def estimate_noise(img2d):
-    sigma = estimate_sigma(img2d)
-    # sigma is a value that describes the noise
-    return sigma
-
-
 class Configuration:
     def __init__(self, image):
         self.img = image
@@ -84,7 +64,6 @@ class Configuration:
         self.rows, self.cols, self.cha = self.img.shape
         self.pixels = self.cols * self.rows
         self.imgSetup = ImageSetup()
-        self.th = None
 
     def get_brightness(self):
         m = average(self.imgGray)
@@ -112,21 +91,11 @@ class Configuration:
             self.imgSetup.contrast = contrast["LOW"]
         self.imgSetup.std_deviation = s
 
-    def get_thresholds(self, do_print=False):
+    def get_thresholds(self):
         gray_thresh = threshold(self.imgGray)
         sat_thresh = threshold(self.imgHSV[:, :, 1])
         self.imgSetup.threshold = gray_thresh
         self.imgSetup.sat_threshold = sat_thresh
-        self.th = multi_thresholding(self.imgGray)
-        if do_print:
-            print("thresholds multi otsu: ", self.th)
-
-    def get_noise(self):
-        n = estimate_noise(self.imgGray)
-        # n > 10 noisy image otherwise not
-        if n < 10.0:
-            self.imgSetup.noise = noise["NOISY"]
-        self.imgSetup.val_noise = n
 
     def print_values(self, do_print=True):
         if do_print:
@@ -158,7 +127,6 @@ def evaluate(img):
     histogram(c.imgHSV[:, :, 1], "saturation")
     c.get_saturation()
     c.get_thresholds()
-    c.get_noise()
     c.print_values(False)
     c.show(False)
     return c.imgSetup

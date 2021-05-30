@@ -1,4 +1,4 @@
 sudo bash docker-build.sh
 cat ~/TOKEN.txt | docker login https://docker.pkg.github.com -u LukasSausE --password-stdin
-docker tag <image-id> docker.pkg.github.com/iw276/iw276ss21-p13/asl-p13:0.1
-docker push docker.pkg.github.com/iw276/iw276ss21-p13/asl-p13:0.1
+docker tag <image-id> docker.pkg.github.com/iw276/iw276ss21-p13/asl-p13:0.2
+docker push docker.pkg.github.com/iw276/iw276ss21-p13/asl-p13:0.2
