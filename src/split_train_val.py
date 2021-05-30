@@ -27,16 +27,17 @@ def copy_xmls(n):
     os.remove(src)
 
 
-val = []
-val_amount = 1
+def split_train_val():
+    val = []
+    val_amount = 1
 
-while val_amount < 1081:
-    random_number = random.randint(1, 4322)
-    while val.__contains__(random_number):
-        random_number = random.randint(1, 4322)
-    val.append(random_number)
-    val_amount += 1
+    while val_amount < 1080:
+        random_number = random.randint(1, 4321)
+        while val.__contains__(random_number):
+            random_number = random.randint(1, 4321)
+        val.append(random_number)
+        val_amount += 1
 
-for number in val:
-    copy_images(number)
-    copy_xmls(number)
+    for number in val:
+        copy_images(number)
+        copy_xmls(number)

@@ -36,5 +36,6 @@ def copy_xmls():
         shutil.copyfile(src, dest)
 
 
-copy_xmls()
-copy_images()
+def copy_and_rename():
+    copy_xmls()
+    copy_images()
