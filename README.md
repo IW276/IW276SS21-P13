@@ -3,8 +3,7 @@
 Short introduction to project assigment.
 
 <p align="center">
-  Screenshot / GIF <br />
-  Link to Demo Video
+  <img src="./gif/result.gif" />
 </p>
 
 > This work was done by Johannes Brecht, Sophia Zimmer, Lukas Seitz during the IW276 Autonome Systeme Labor at the Karlsruhe University of Applied Sciences (Hochschule Karlruhe - Technik und Wirtschaft) in SS 2021.
