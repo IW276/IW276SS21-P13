@@ -5,8 +5,8 @@ image_count = 0
 
 
 def copy_images():
-    img_src_parent = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/RTTS/JPEGImages"
-    img_parent_train = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/train/Images"
+    img_src_parent = os.getcwd() + "/../datasets/RTTS/JPEGImages"
+    img_parent_train = os.getcwd() + "/../datasets/train/Images"
 
     shutil.rmtree(img_parent_train)
     os.makedirs(img_parent_train, exist_ok=True)
@@ -21,10 +21,10 @@ def copy_images():
 
 
 def copy_xmls():
-    xml_src_parent = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/RTTS/Annotations"
-    xml_parent_train = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/train/Annotations"
+    xml_src_parent = os.getcwd() + "/../datasets/RTTS/Annotations"
+    xml_parent_train = os.getcwd() + "/../datasets/train/Annotations"
 
-    shutil.rmtree(xml_parent_train)
+    shutil.rmtree(xml_parent_train, ignore_errors=True)
     os.makedirs(xml_parent_train, exist_ok=True)
 
     img_count = 0

@@ -2,13 +2,13 @@ import os
 import random
 import shutil
 
-img_src_parent = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/train/Images"
-img_parent_val = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/val/Images"
-xml_src_parent = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/train/Annotations"
-xml_parent_val = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/val/Annotations"
+img_src_parent = os.path.join(os.getcwd(), "..", "datasets", "train", "Images")
+img_parent_val = os.path.join(os.getcwd(), "..", "datasets", "val", "Images")
+xml_src_parent = os.path.join(os.getcwd(), "..", "datasets", "train", "Annotations")
+xml_parent_val = os.path.join(os.getcwd(), "..", "datasets", "val", "Annotations")
 
-shutil.rmtree(img_parent_val)
-shutil.rmtree(xml_parent_val)
+shutil.rmtree(img_parent_val, ignore_errors=True)
+shutil.rmtree(xml_parent_val, ignore_errors=True)
 os.makedirs(img_parent_val, exist_ok=True)
 os.makedirs(xml_parent_val, exist_ok=True)
 

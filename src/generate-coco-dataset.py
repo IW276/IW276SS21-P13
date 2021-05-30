@@ -6,12 +6,12 @@ import copy_and_rename_dataset
 import split_train_val
 import voc2coco
 
-dataset_parent = "C:/Users/Lukassause/Downloads/pedestrian_dataset"
+dataset_parent = os.getcwd() + "/../datasets/pedestrian_dataset"
 dataset_train_parent = dataset_parent + "/train"
 dataset_val_parent = dataset_parent + "/val"
 
-img_src_parent_train = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/train/Images"
-img_src_parent_val = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/val/Images"
+img_src_parent_train = os.getcwd() + "/../datasets/train/Images"
+img_src_parent_val = os.getcwd() + "/../datasets/val/Images"
 
 shutil.rmtree(dataset_parent, ignore_errors=True)
 os.makedirs(dataset_train_parent, exist_ok=True)
@@ -31,8 +31,8 @@ def copy_images():
 
 
 def create_and_copy_json_train():
-    annotation_directory = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/train/Annotations"
-    json_file = "C:/Users/Lukassause/Downloads/pedestrian_dataset/train/output.json"
+    annotation_directory = os.getcwd() + "/../datasets/train/Annotations"
+    json_file = os.getcwd() + "/../datasets/pedestrian_dataset/train/output.json"
     xml_files = glob.glob(os.path.join(annotation_directory, "*.xml"))
 
     # If you want to do train/test split, you can pass a subset of xml files to convert function.
@@ -40,8 +40,8 @@ def create_and_copy_json_train():
 
 
 def create_and_copy_json_val():
-    annotation_directory = "C:/Users/Lukassause/Studium/07_Semester/Wahlpflichtfächer 3/IW276SS21-P13/datasets/val/Annotations"
-    json_file = "C:/Users/Lukassause/Downloads/pedestrian_dataset/val/output.json"
+    annotation_directory = os.getcwd() + "/../datasets/val/Annotations"
+    json_file = os.getcwd() + "/../datasets/pedestrian_dataset/val/output.json"
     xml_files = glob.glob(os.path.join(annotation_directory, "*.xml"))
 
     # If you want to do train/test split, you can pass a subset of xml files to convert function.
@@ -53,7 +53,7 @@ def generate():
     create_and_copy_json_train()
     create_and_copy_json_val()
 
-    shutil.make_archive(dataset_parent + ".zip", 'zip', dataset_parent)
+    shutil.make_archive(dataset_parent, 'zip', dataset_parent)
 
 
 copy_and_rename_dataset.copy_and_rename()
