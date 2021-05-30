@@ -2,8 +2,8 @@
 
 Short introduction to project assigment.
 
-<p align="center">
-  <img src="./gif/result.gif" />
+<p style="margin-left: 50%;">
+  <img src="./gif/result.gif"  alt="Project samples"/>
 </p>
 
 > This work was done by Johannes Brecht, Sophia Zimmer, Lukas Seitz during the IW276 Autonome Systeme Labor at the Karlsruhe University of Applied Sciences (Hochschule Karlruhe - Technik und Wirtschaft) in SS 2021.
@@ -18,10 +18,12 @@ Short introduction to project assigment.
 
 ## Requirements
 
-* Python 3.9.2 (or above)
-* OpenCV 4.5.1 (or above)
 * Jetson Nano
 * Jetpack 4.5.1
+* Docker 19.03 (or above)
+* Python 3.9.2 (or above)
+* OpenCV 4.5.1.48
+* Matplotlib
 
 ## Prerequisites
 
