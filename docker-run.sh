@@ -2,7 +2,7 @@
 
 CONTAINER="asl-p13"
 
-RUN export DISPLAY=:1
+export DISPLAY=:1
 
 RUN xhost +
 
