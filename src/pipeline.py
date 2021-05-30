@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import os
 from datetime import datetime
 
@@ -30,7 +28,8 @@ class Pipeline:
             result_img = adjust_gamma(img, image_setup.average)
             result_img = Filter(result_img).gaussian_filter()
             result_img = bina_adapt_mean_threshold(cv2.cvtColor(result_img, cv2.COLOR_BGR2GRAY))
-            cv2.imwrite(os.path.join(self.pipeline_result_directory, image_name.replace(".png", "_result.png")), result_img)
+            cv2.imwrite(os.path.join(self.pipeline_result_directory, image_name.replace(".png", "_result.png")),
+                        result_img)
 
         self.end_time = datetime.now().timestamp()
         self.fps = self.img_count / (self.end_time - self.start_time)

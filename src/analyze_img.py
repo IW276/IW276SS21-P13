@@ -1,7 +1,8 @@
 from __future__ import print_function
-from matplotlib import pyplot as plt
-import numpy as np
+
 import cv2
+import numpy as np
+from matplotlib import pyplot as plt
 
 brightness = {"DARK": 0,
               "NORMAL": 1,
@@ -98,15 +99,16 @@ class Configuration:
         self.imgSetup.threshold = gray_thresh
         self.imgSetup.sat_threshold = sat_thresh
 
-    def print_values(self):
-        print("Average brightness: " + str(self.imgSetup.average))
-        print("Standard deviation: " + str(self.imgSetup.std_deviation))
-        print("Average saturation: " + str(self.imgSetup.sat_average))
-        print("Std. deviation sat: " + str(self.imgSetup.sat_std_deviation))
-        print("Threshold gray: " + str(self.imgSetup.threshold))
-        print("Threshold sat: " + str(self.imgSetup.sat_threshold))
-        print("Brightness: " + str(self.imgSetup.brightness))
-        print("Contrast: " + str(self.imgSetup.contrast))
+    def print_values(self, do_print=True):
+        if do_print:
+            print("Average brightness: " + str(self.imgSetup.average))
+            print("Standard deviation: " + str(self.imgSetup.std_deviation))
+            print("Average saturation: " + str(self.imgSetup.sat_average))
+            print("Std. deviation sat: " + str(self.imgSetup.sat_std_deviation))
+            print("Threshold gray: " + str(self.imgSetup.threshold))
+            print("Threshold sat: " + str(self.imgSetup.sat_threshold))
+            print("Brightness: " + str(self.imgSetup.brightness))
+            print("Contrast: " + str(self.imgSetup.contrast))
 
     def show(self):
         cv2.imshow("Color", self.img)
@@ -126,12 +128,5 @@ def evaluate(img):
     histogram(c.imgHSV[:, :, 1], "saturation")
     c.get_saturation()
     c.get_thresholds()
-    # TODO: Remove or comment print calls after testing
-    # c.print_values()
-    # TODO: Remove or comment after testing
-    # c.show()
+    c.print_values(False)
     return c.imgSetup
-
-
-# if __name__ == "__main__":
-#     evaluate()

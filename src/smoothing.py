@@ -3,7 +3,6 @@ import numpy as np
 
 
 class Filter:
-
     def __init__(self, image):
         self.img = image
         self.imgGray = cv2.cvtColor(self.img, cv2.COLOR_BGR2GRAY)
