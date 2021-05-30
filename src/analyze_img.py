@@ -12,6 +12,9 @@ contrast = {"HIGH": 2,
             "NORMAL": 1,
             "LOW": 0}
 
+noise = {"NOISY": 1,
+         "DEFAULT": 0}
+
 
 class ImageSetup:
     def __init__(self):
@@ -26,6 +29,9 @@ class ImageSetup:
         self.sat_average = -1
         self.sat_std_deviation = -1
         self.sat_threshold = -1
+        # noise
+        self.noise = noise["DEFAULT"]
+        self.val_noise = -1
 
 
 def average(img2d):
@@ -56,6 +62,18 @@ def threshold(img2d):
     # return is the threshold value followed by the result image
     thr, o1 = cv2.threshold(img2d, 0, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C + cv2.THRESH_OTSU)
     return thr
+
+
+def multi_thresholding(img2d):
+    thresholds = threshold_multiotsu(img2d)
+    # thresholds is an array with two elements
+    return thresholds
+
+
+def estimate_noise(img2d):
+    sigma = estimate_sigma(img2d)
+    # sigma is a value that describes the noise
+    return sigma
 
 
 class Configuration:
@@ -98,6 +116,15 @@ class Configuration:
         sat_thresh = threshold(self.imgHSV[:, :, 1])
         self.imgSetup.threshold = gray_thresh
         self.imgSetup.sat_threshold = sat_thresh
+        th = multi_thresholding(self.imgGray)
+        print("thresholds multi otsu: ", th)
+
+    def get_noise(self):
+        n = estimate_noise(self.imgGray)
+        # n > 10 noisy image otherwise not
+        if n < 10.0:
+            self.imgSetup.noise = noise["NOISY"]
+        self.imgSetup.val_noise = n
 
     def print_values(self, do_print=True):
         if do_print:
@@ -129,4 +156,7 @@ def evaluate(img):
     c.get_saturation()
     c.get_thresholds()
     c.print_values(False)
+    c.get_noise()
+    c.print_values()
+    c.show()
     return c.imgSetup
