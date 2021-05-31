@@ -65,7 +65,7 @@ For building the docker image you only have to execute following code in a comma
 IW276SS21-P13)
 
 ```
-$ docker-build.sh
+$ sudo docker-build.sh
 ```
 
 ### Uploading Image
@@ -88,7 +88,7 @@ By running the docker image, your inserted images will be processed in the pipel
 command:
 
 ```
-$ docker-run.sh /full-image-directory-path/ /full-result-directory-path/
+$ sudo docker-run.sh /full-image-directory-path/ /full-result-directory-path/
 ```
 
 Mind that **/full-image-directory-path/** is the full path to the directory with the images that should be processed
