@@ -1,6 +1,9 @@
 # Project-Template for IW276 Autonome Systeme Labor
 
-Short introduction to project assigment.
+This repository uses basics of automatic white balancing and exposure compensation. The goal is to produce a better 
+image representation for a neuronal net for detecting pedestrians.
+Use the docker image to transform your original images to images that got automatic white balancing and exposure 
+compensation.
 
 <p style="margin-left: 50%;">
   <img src="./gif/result.gif"  alt="Project samples"/>
